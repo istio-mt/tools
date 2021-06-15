@@ -58,7 +58,7 @@ func (g *typesGenerator) GenerateType(c *generator.Context, t *types.Type, w io.
 		"TypeMeta":    c.Universe.Type(types.Name{Name: "TypeMeta", Package: "k8s.io/apimachinery/pkg/apis/meta/v1"}),
 		"ObjectMeta":  c.Universe.Type(types.Name{Name: "ObjectMeta", Package: "k8s.io/apimachinery/pkg/apis/meta/v1"}),
 		"ListMeta":    c.Universe.Type(types.Name{Name: "ListMeta", Package: "k8s.io/apimachinery/pkg/apis/meta/v1"}),
-		"IstioStatus": c.Universe.Type(types.Name{Name: "IstioStatus", Package: "istio.io/api/meta/v1alpha1"}),
+		"ConfigStatus": c.Universe.Type(types.Name{Name: "ConfigStatus", Package: "gitlab.meitu.com/mesh/istio-config-controller/api/config/v1alpha1"}),
 	}
 	for _, kubeType := range kubeTypes {
 		// make sure local types get imports generated for them to prevent reusing their local name for real imports,
@@ -92,7 +92,7 @@ type $.KubeType.Type|public$ struct {
 	// +optional
 	Spec $.RawType|raw$ ` + "`" + `json:"spec,omitempty" protobuf:"bytes,2,opt,name=spec"` + "`" + `
 
-	Status $.IstioStatus|raw$ ` + "`" + `json:"status"` + "`" + `
+	Status $.ConfigStatus|raw$ ` + "`" + `json:"status"` + "`" + `
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
